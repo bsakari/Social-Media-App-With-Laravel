@@ -120,7 +120,7 @@
                             <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
                                     <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
+                                        <i class="fa fa-search">Go</i>
                                     </button>
                                 </span>
                         </div>
@@ -137,7 +137,7 @@
 
 
                     <li>
-                        <a href="#"><i class="fa fa-wrench fa-fw"></i>Users<span class="fa arrow"></span></a>
+                        <a href="{{ url('/admin/users') }}"><i class="fa fa-wrench fa-fw"></i>Users<span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level">
                             <li>
 {{--                                <a href="{{route('admin.users.index')}}">All Users</a>--}}
