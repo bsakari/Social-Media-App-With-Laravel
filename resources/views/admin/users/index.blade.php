@@ -8,6 +8,24 @@
 
     <h1>Users</h1>
 
+    @if(session()->has('deleted_user'))
+        <div class="alert alert-success">
+            <p>{{session('deleted_user')}}</p>
+        </div>
+    @endif
+
+    @if(session()->has('created_user'))
+        <div class="alert alert-success">
+            <p>{{session('created_user')}}</p>
+        </div>
+    @endif
+
+    @if(session()->has('edited_user'))
+        <div class="alert alert-success">
+            <p>{{session('edited_user')}}</p>
+        </div>
+    @endif
+
     <table class="table table-hover">
         <thead>
           <tr>

@@ -8,6 +8,7 @@ use App\Photo;
 use App\Role;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class AdminUsersController extends Controller
 {
@@ -55,6 +56,8 @@ class AdminUsersController extends Controller
         $input['password'] = bcrypt($request->password);
         User::create($input);
 
+        Session::flash('created_user','User created successfully');
+
         return redirect('admin/users');
     }
 
@@ -67,7 +70,7 @@ class AdminUsersController extends Controller
     public function show($id)
     {
         //
-        return view('admin.users.show');
+        //return view('admin.users.show');
     }
 
     /**
@@ -106,6 +109,7 @@ class AdminUsersController extends Controller
             $input['photo_id'] = $photo->id;
         }
         $user->update($input);
+        Session::flash('edited_user','User edited successfully');
 
         return redirect('admin/users');
 
@@ -120,5 +124,14 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
+        $user = User::findOrFail($id);
+
+        //Delete the image from the images folder
+        unlink(public_path().$user->photo->file);
+
+        $user->delete();
+        Session::flash('deleted_user','User deleted successfully');
+
+        return redirect('admin/users');
     }
 }
